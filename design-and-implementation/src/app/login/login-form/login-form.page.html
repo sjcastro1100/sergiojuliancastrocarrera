@@ -1,0 +1,25 @@
+<div class="h-full grid grid-cols-1 content-center bg-gradient-to-b from-slate-900 via-sky-700  to-emerald-900 text-white">
+  <form [formGroup]="formLogin">
+    <div class=" mb-32 text-center">
+      <h1 class=" font-bold text-4xl">Evaluación IONIC Semi-Sr</h1>
+    </div>
+    <div class=" rounded-lg bg-gray-600 mx-2 p-3">
+      <ion-item>
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <p class=" mx-4 text-sm text-red-500" *ngIf="formLogin.get('email').hasError('required') && (formLogin.get('email').touched || formLogin.get('email').dirty)">* Campo obligatorio</p>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <p class=" mx-4 text-sm text-red-500" *ngIf="formLogin.get('password').hasError('required') && (formLogin.get('password').touched || formLogin.get('password').dirty)">* Campo obligatorio</p>
+    </div>
+    <div class="text-center mt-8">
+      <ion-button (click)="login()" class=" w-48">Iniciar sesion</ion-button>
+    </div>
+    <div class="text-center mt-28">
+      <p><span>¿No tienes una cuenta?</span> <span (click)="register()" class=" font-bold"> Crea una aquí</span></p>
+    </div>
+  </form>
+</div>

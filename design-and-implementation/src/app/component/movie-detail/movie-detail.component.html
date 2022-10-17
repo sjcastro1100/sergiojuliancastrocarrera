@@ -1,0 +1,31 @@
+<div class="bg-gradient-to-b from-slate-900 via-sky-700  to-emerald-900 text-white h-screen overflow-y-scroll" >
+  <ion-icon (click)="back()" class="absolute mt-10 font-bold text-3xl " name="chevron-back"></ion-icon>
+
+  <div class=" grid grid-cols-1 gap-2">
+    <div *ngIf="movie.image" class="bg-[url({{movie.image.original}})] bg-cover  bg-no-repeat  bg-center h-96">
+    </div>
+    <div *ngIf="!movie.image" class="text-center text-white bg-gray-500 py-28  h-96">
+      <ion-icon class="text-4xl" name="videocam-outline"></ion-icon>
+      <p class="text-xl">Imagen no disponible</p>
+    </div>
+    <div class="p-2">
+      <div class=" font-bold text-2xl">
+        {{movie.name}}
+      </div>
+      <div>
+        <span *ngFor="let gender of movie.genres; let i = index">{{gender}} <span *ngIf="(i+1) < movie.genres.length"> ·</span></span>
+      </div>
+      <div class="text-base">
+        {{movie.schedule.type}}
+      </div>
+      <div>
+        {{movie.language}}
+      </div>
+      <div class=" rounded-lg border border-slate-400 p-2" id="description">
+      </div>
+      <div *ngIf="movie.officialSite" class="text-xs mt-1 text-center">
+        visit:  {{movie.officialSite}}
+      </div>
+    </div>
+  </div>
+</div>

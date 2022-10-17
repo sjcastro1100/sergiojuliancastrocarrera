@@ -1,20 +1,53 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-app class="">
+  <div class=" bg-red-500">
+    <ion-menu contentId="main-content">
+      <ion-header>
+        <ion-toolbar color="dark">
+          <ion-title *ngIf="user"><ion-icon name="person"></ion-icon>{{user.name}} {{user.lastname}}</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <p (click)="logout()"><span><ion-icon name="lock-closed"></ion-icon></span>Cerrar sesion<span></span></p>
+      </ion-content>
+    </ion-menu>
+    <div class="ion-page" id="main-content">
+      <ion-header>
+        <ion-toolbar color="dark">
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-title>Películas</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="h-full">
+        <div class="bg-gradient-to-b from-slate-900 via-sky-700  to-emerald-900 text-white" *ngIf="logeado == true">
+          <br>
+          <div class="rounded-lg bg-gray-600 mx-3 mb-8 p-2" >
+            <ion-item>
+              <ion-label position="floating">Búsqueda</ion-label>
+              <ion-input [(ngModel)]="query_movie"  (keyup)="getData()" type="search"></ion-input>
+            </ion-item>
+          </div>
+          <div class=" h-screen overflow-y-scroll pb-24 mx-2">
+            <div class=" grid grid-cols-3 gap-4 rounded-lg">
+              <div class=" shadow-2xl shadow-white" *ngFor="let movie of movies" (click)="movieDetail(movie)">
+                <div >
+                 <img *ngIf="movie.image" src="{{movie.image.medium}}" class=" rounded-lg h-auto">
+                 <div *ngIf="!movie.image" class="text-center text-white bg-gray-500 py-12 rounded-lg">
+                  <ion-icon class="text-3xl" name="videocam-outline"></ion-icon>
+                  <p class="text-xs">Imagen no disponible</p>
+                 </div>
+                </div>
+                <div class="text-xs text-center font-bold bg-slate-900">
+                  <p>{{movie.name | pipePrincipal : "text" }}</p>
+                  <p cl>{{movie.premiered}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-content>
+    </div>
   </div>
-</ion-content>
+</ion-app>
+

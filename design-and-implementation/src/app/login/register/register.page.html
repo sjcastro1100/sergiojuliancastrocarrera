@@ -1,0 +1,37 @@
+<div class="h-full bg-gradient-to-b from-slate-900 via-sky-700  to-emerald-900 text-white">
+  <form [formGroup]="formRegister">
+    <div>
+      <div class="text-center">
+        <ion-icon class="banner-register" name="person-circle-outline"></ion-icon>
+      </div>
+      <div class="rounded-lg bg-gray-600 mx-2 p-3">
+        <ion-item>
+          <ion-label position="floating">Nombre(s)</ion-label>
+          <ion-input formControlName="name" type="text"></ion-input>
+        </ion-item>
+        <p class=" mx-4 text-sm text-red-500" *ngIf="formRegister.get('name').hasError('required') && (formRegister.get('name').touched || formRegister.get('name').dirty)">* Campo obligatorio</p>
+        <ion-item>
+          <ion-label position="floating">Apellido(s)</ion-label>
+          <ion-input formControlName="lastname" type="text"></ion-input>
+        </ion-item>
+        <p class=" mx-4 text-sm text-red-500" *ngIf="formRegister.get('lastname').hasError('required') && (formRegister.get('lastname').touched || formRegister.get('lastname').dirty)">* Campo obligatorio</p>
+        <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <p class=" mx-4 text-sm text-red-500" *ngIf="formRegister.get('email').hasError('required') && (formRegister.get('email').touched || formRegister.get('email').dirty)">* Campo obligatorio</p>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input formControlName="password" type="password"></ion-input>
+        </ion-item>
+        <p class=" mx-4 text-sm text-red-500" *ngIf="formRegister.get('password').hasError('required') && (formRegister.get('password').touched || formRegister.get('password').dirty)">* Campo obligatorio</p>
+      </div>
+    </div>
+    <div class="text-center  mt-8">
+      <ion-button (click)="register()" class=" w-48">Registrarse</ion-button>
+    </div>
+    <div class="text-center mt-28">
+      <p><span>Regresar /</span> <span (click)="login()" class=" font-bold"> Iniciar sesion</span></p>
+    </div>
+  </form>
+</div>
